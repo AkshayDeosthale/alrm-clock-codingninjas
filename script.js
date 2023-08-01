@@ -100,7 +100,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   //Setting operation on click of the buttons
   setAlarmButton.addEventListener("click", setAlarm);
-  setAlarmButton.addEventListener("click", setAlarm);
   resetAlarmButton.addEventListener("click", resetAlarm);
 
   startClock();
