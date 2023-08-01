@@ -14,10 +14,6 @@ Remember , Input type date will vary depending on browser.
 - Alarms List: Display a list of all the alarms set by the user.
 - Delete Alarm: Each alarm in the list has a delete button to remove the alarm.
 
-<!-- ## Live Demo
-
-Check out the live demo of the project [here](https://www.example.com). -->
-
 ## Installation and Usage
 
 1. Clone the repository to your local machine:

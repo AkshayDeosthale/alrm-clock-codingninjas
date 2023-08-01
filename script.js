@@ -4,14 +4,13 @@
 document.addEventListener("DOMContentLoaded", function () {
   //Fetching basic elements ,  will be available globaly
   const currentTimeDisplay = document.getElementById("current-time");
-  const alarmTimeInput = document.getElementById("alarm-time");
   const setAlarmButton = document.getElementById("set-alarm-btn");
   const resetAlarmButton = document.getElementById("reset-alarm-btn");
   const alarmsList = document.getElementById("alarms-list");
 
   let alarmTime = null;
   let intervalId;
-
+  //Step 2 get current time and display it
   function updateCurrentTime() {
     const now = new Date();
     const hours = String(now.getHours()).padStart(2, "0");
@@ -20,6 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
     currentTimeDisplay.innerText = `${hours}:${minutes}:${seconds}`;
   }
 
+  //Step 3 keep checking if time matches to the one added in the list
   function checkAlarm() {
     const now = new Date();
     const currentTime = now.getTime();
@@ -35,16 +35,12 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
+  //Step 1
   function startClock() {
     intervalId = setInterval(function () {
       updateCurrentTime();
       checkAlarm();
     }, 1000);
-  }
-
-  function setAlarm() {
-    alarmTime = alarmTimeInput.value;
-    startClock();
   }
 
   function resetAlarm() {
@@ -56,7 +52,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementById("alarm-sec").value = "";
     document.getElementById("alarm-ampm").value = "AM";
   }
-
+  //Converting time to string format
   function createAlarmTimeString(hr, min, sec, ampm) {
     const timeString = `${String(hr).padStart(2, "0")}:${String(min).padStart(
       2,
@@ -65,6 +61,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return timeString;
   }
 
+  //Appending new alarm to the list and creatinf li elemt along with it
   function addAlarmToList(alarmTimeString) {
     const li = document.createElement("li");
     //Adding List element with bootsrap class
@@ -85,7 +82,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     alarmsList.appendChild(li);
   }
-
+  //Step 4 add an alarm and reset values after
   function setAlarm() {
     const hr = parseInt(document.getElementById("alarm-hr").value);
     const min = parseInt(document.getElementById("alarm-min").value);
