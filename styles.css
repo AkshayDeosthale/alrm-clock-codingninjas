@@ -1,0 +1,44 @@
+body {
+  padding: 0px;
+  margin: 0px;
+  position: relative;
+}
+
+.clock-detail-container {
+  text-align: center;
+  padding: 0px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  background: rgb(63, 94, 251);
+  background: radial-gradient(
+    circle,
+    rgba(63, 94, 251, 1) 0%,
+    rgba(252, 70, 107, 1) 100%
+  );
+  color: white;
+}
+
+#current-time {
+  font-size: 48px;
+}
+.alarm-setter {
+  display: flex;
+  gap: 10px;
+}
+
+li {
+  min-width: 300px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.widget {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+}

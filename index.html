@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Alarm Clock</title>
+    <link rel="stylesheet" href="path/to/bootstrap.min.css" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- widget -->
+    <div class="widget">
+      <p>
+        Created By Akshay Deosthale ,
+        <a target="_blank" href="https://www.akshaydeosthale.com"
+          >www.akshaydeosthale.com</a
+        >
+      </p>
+    </div>
+
+    <!-- body -->
+    <div class="clock-detail-container">
+      <h1>Alarm Clock</h1>
+      <div class="clock">
+        <h2 id="current-time">00:00:00</h2>
+      </div>
+
+      <!-- form for the inputs -->
+      <div class="alarm-setter">
+        <div class="form-group">
+          <label for="alarm-hr">Hour:</label>
+          <input
+            type="number"
+            id="alarm-hr"
+            class="form-control"
+            min="1"
+            max="12"
+          />
+        </div>
+        <div class="form-group">
+          <label for="alarm-min">Minute:</label>
+          <input
+            type="number"
+            id="alarm-min"
+            class="form-control"
+            min="0"
+            max="59"
+          />
+        </div>
+        <div class="form-group">
+          <label for="alarm-sec">Second:</label>
+          <input
+            type="number"
+            id="alarm-sec"
+            class="form-control"
+            min="0"
+            max="59"
+          />
+        </div>
+        <div class="form-group">
+          <label for="alarm-ampm">AM/PM:</label>
+          <select id="alarm-ampm" class="form-control">
+            <option value="AM">AM</option>
+            <option value="PM">PM</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="gap: 20px" class="d-flex">
+        <button id="set-alarm-btn" class="btn btn-primary">Set Alarm</button>
+        <button id="reset-alarm-btn" class="btn btn-secondary">
+          Reset Alarm
+        </button>
+      </div>
+
+      <!-- list of alarms configured -->
+      <div class="alarms">
+        <ul id="alarms-list" class="list-group"></ul>
+      </div>
+    </div>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9"
+      crossorigin="anonymous"
+    />
+    <script src="script.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
