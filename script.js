@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function startStopwatch() {
     if (startTime === null) {
       startTime = new Date().getTime();
-      intervalId = setInterval(updateStopwatchTime, 10);
+      intervalId = setInterval(updateStopwatchTime, 100);
     }
   }
 
