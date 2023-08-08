@@ -1,106 +1,58 @@
-//Using strict mode here to avoid errors
 "use strict";
 
 document.addEventListener("DOMContentLoaded", function () {
-  //Fetching basic elements ,  will be available globaly
+  // Fetching basic elements, will be available globally
   const currentTimeDisplay = document.getElementById("current-time");
-  const setAlarmButton = document.getElementById("set-alarm-btn");
-  const resetAlarmButton = document.getElementById("reset-alarm-btn");
-  const alarmsList = document.getElementById("alarms-list");
+  const startStopwatchButton = document.getElementById("start-stopwatch-btn");
+  const stopStopwatchButton = document.getElementById("stop-stopwatch-btn");
+  const resetStopwatchButton = document.getElementById("reset-stopwatch-btn");
 
-  let alarmTime = null;
+  let startTime = null;
+  let accumulatedTime = 0;
   let intervalId;
-  //Step 2 get current time and display it
-  function updateCurrentTime() {
-    const now = new Date();
-    const hours = String(now.getHours()).padStart(2, "0");
-    const minutes = String(now.getMinutes()).padStart(2, "0");
-    const seconds = String(now.getSeconds()).padStart(2, "0");
-    currentTimeDisplay.innerText = `${hours}:${minutes}:${seconds}`;
+
+  // Update the current time display
+  function updateCurrentTime(time) {
+    const minutes = String(Math.floor(time / 60000)).padStart(2, "0");
+    const seconds = String(Math.floor((time % 60000) / 1000)).padStart(2, "0");
+    const milliseconds = String(time % 1000).padStart(3, "0");
+    currentTimeDisplay.innerText = `${minutes}:${seconds}:${milliseconds}`;
   }
 
-  //Step 3 keep checking if time matches to the one added in the list
-  function checkAlarm() {
-    const now = new Date();
-    const currentTime = now.getTime();
-
-    if (alarmTime !== null) {
-      const alarmDateTime = new Date(now.toDateString() + " " + alarmTime);
-      const alarmTimeMillis = alarmDateTime.getTime();
-
-      if (currentTime >= alarmTimeMillis) {
-        clearInterval(intervalId);
-        alert("Time's up! Alarm triggered!");
-      }
+  // Start the stopwatch
+  function startStopwatch() {
+    if (startTime === null) {
+      startTime = new Date().getTime();
+      intervalId = setInterval(updateStopwatchTime, 10);
     }
   }
 
-  //Step 1
-  function startClock() {
-    intervalId = setInterval(function () {
-      updateCurrentTime();
-      checkAlarm();
-    }, 1000);
-  }
-
-  function resetAlarm() {
+  // Stop the stopwatch
+  function stopStopwatch() {
     clearInterval(intervalId);
-    alarmTime = null;
-    document.getElementById("alarm-hr").value = "";
-    document.getElementById("alarm-min").value = "";
-    document.getElementById("alarm-sec").value = "";
-    document.getElementById("alarm-sec").value = "";
-    document.getElementById("alarm-ampm").value = "AM";
-  }
-  //Converting time to string format
-  function createAlarmTimeString(hr, min, sec, ampm) {
-    const timeString = `${String(hr).padStart(2, "0")}:${String(min).padStart(
-      2,
-      "0"
-    )}:${String(sec).padStart(2, "0")} ${ampm}`;
-    return timeString;
+    intervalId = null;
+    accumulatedTime += new Date().getTime() - startTime;
+    startTime = null;
   }
 
-  //Appending new alarm to the list and creatinf li elemt along with it
-  function addAlarmToList(alarmTimeString) {
-    const li = document.createElement("li");
-    //Adding List element with bootsrap class
-
-    li.classList.add("list-group-item", "custom-list");
-    const ptag = document.createElement("span");
-    ptag.innerText = alarmTimeString;
-
-    const deleteButton = document.createElement("button");
-    deleteButton.innerText = "Delete";
-    deleteButton.classList.add("btn", "btn-danger", "ml-2");
-
-    deleteButton.addEventListener("click", function () {
-      li.remove();
-    });
-    li.appendChild(ptag);
-    li.appendChild(deleteButton);
-
-    alarmsList.appendChild(li);
-  }
-  //Step 4 add an alarm and reset values after
-  function setAlarm() {
-    const hr = parseInt(document.getElementById("alarm-hr").value);
-    const min = parseInt(document.getElementById("alarm-min").value);
-    const sec = parseInt(document.getElementById("alarm-sec").value);
-    const ampm = document.getElementById("alarm-ampm").value;
-
-    const alarmTimeString = createAlarmTimeString(hr, min, sec, ampm);
-    addAlarmToList(alarmTimeString);
-
-    // Reset alarm input values
-    document.getElementById("alarm-hr").value = "";
-    document.getElementById("alarm-min").value = "";
-    document.getElementById("alarm-sec").value = "";
+  // Reset the stopwatch
+  function resetStopwatch() {
+    clearInterval(intervalId);
+    intervalId = null;
+    startTime = null;
+    accumulatedTime = 0;
+    updateCurrentTime(0);
   }
 
-  //Setting operation on click of the buttons
-  setAlarmButton.addEventListener("click", setAlarm);
-  resetAlarmButton.addEventListener("click", resetAlarm);
+  // Update the stopwatch time
+  function updateStopwatchTime() {
+    const currentTime = new Date().getTime();
+    const elapsedTime = accumulatedTime + currentTime - startTime;
+    updateCurrentTime(elapsedTime);
+  }
 
-  startClock();
+  // Set operation on click of the buttons
+  startStopwatchButton.addEventListener("click", startStopwatch);
+  stopStopwatchButton.addEventListener("click", stopStopwatch);
+  resetStopwatchButton.addEventListener("click", resetStopwatch);
 });

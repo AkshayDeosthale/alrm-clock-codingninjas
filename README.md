@@ -2,17 +2,9 @@
 
 ![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)
 
-An alarm clock web application built using vanilla JavaScript, HTML, and CSS. The application allows users to set alarms, view the current time, and receive alerts when the alarm time is reached.
-Remember , Input type date will vary depending on browser.
+An timer clock web application built using vanilla JavaScript, HTML, and CSS. The application allows users to set stop watch timers.
 
 ![Alarm Clock Screenshot](/alarmSS.png)
-
-## Features
-
-- Clock face displaying the current time (hours, minutes, and seconds).
-- Set Alarm: Input boxes to set an alarm (hour, minute, second, and AM/PM).
-- Alarms List: Display a list of all the alarms set by the user.
-- Delete Alarm: Each alarm in the list has a delete button to remove the alarm.
 
 ## Installation and Usage
 
@@ -20,9 +12,7 @@ Remember , Input type date will vary depending on browser.
 
 2. Open the `index.html` file in your web browser.
 
-3. Set the desired alarm time using the input boxes and click the "Set Alarm" button.
-
-4. When the alarm time is reached, an alert will be displayed in the browser.
+3. Start and stop the timer as you desire and even rest it.
 
 ## Dependencies
 
